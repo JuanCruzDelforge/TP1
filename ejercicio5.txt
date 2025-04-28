@@ -1,0 +1,25 @@
+def valor_romano(c):
+    valores = {
+        'I': 1,
+        'V': 5,
+        'X': 10,
+        'L': 50,
+        'C': 100,
+        'D': 500,
+        'M': 1000
+    }
+    return valores.get(c, 0)
+
+def romano_a_decimal(romano):
+    if len(romano) == 0:
+        return 0
+    if len(romano) == 1:
+        return valor_romano(romano)
+    
+    primero = valor_romano(romano[0])
+    segundo = valor_romano(romano[1])
+    
+    if primero >= segundo:
+        return primero + romano_a_decimal(romano[1:])
+    else:
+        return (segundo - primero) + romano_a_decimal(romano[2:])

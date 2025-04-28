@@ -1,0 +1,20 @@
+def usar_la_fuerza(mochila, objeto_buscado, objetos_revisados=0):
+    if len(mochila) == 0:
+        return False, objetos_revisados
+
+    primer_objeto = mochila[0]
+    objetos_revisados += 1
+
+    if primer_objeto == objeto_buscado:
+        return True, objetos_revisados
+
+    return usar_la_fuerza(mochila[1:], objeto_buscado, objetos_revisados)
+
+mochila = ['cuerda', 'botella de agua', 'sable de luz', 'comida', 'manta']
+
+encontrado, objetos_revisados = usar_la_fuerza(mochila, 'sable de luz')
+
+if encontrado:
+    print(f"¡Sable de luz encontrado tras revisar {objetos_revisados} objetos!")
+else:
+    print("No se encontró el sable de luz.")
